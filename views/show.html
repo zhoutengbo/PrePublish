@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>版本预发布列表</title>
+	<link rel='stylesheet' href='/css/zh-cn.default.css' type='text/css' media='screen' />
+	<script src='/js/jQery.js'></script>
+	  <script>
+        function doPost(to, p) {  // to:提交动作（action）,p:参数
+        	var myForm = document.createElement("form");     
+        	myForm.method = "post";
+        	myForm.action = to; 
+		for (var i in p){    
+                	var myInput = document.createElement("input");     
+                	myInput.setAttribute("name", i);  // 为input对象设置name
+                	myInput.setAttribute("value", p[i]);  // 为input对象设置value
+                	myForm.appendChild(myInput);
+                }   
+                document.body.appendChild(myForm);   
+                myForm.submit(); 
+                document.body.removeChild(myForm);  // 提交后移除创建的form
+
+        }
+    </script>
+</head>
+<body>
+
+
+<div class="container">
+<div class="mainContent">
+<div class="main-table" data-ride="table" data-checkable="false" id="table-fr2vtnn835">
+<div id="mainMenu" class="clearfix table-row">
+  <div class="btn-toolbar pull-left">
+    <span class="btn btn-link btn-active-text">
+   		
+    </span>
+  </div>
+
+</div>
+
+
+<table class="table text-center with-footer-fixed" id="buildList">
+
+
+
+<thead>
+        <tr>
+          <th class="c-date text-left" title="版本号">版本号</th>
+          <th class="c-name text-left" title="名称编号">名称编号</th>
+          <th class="c-url" title="下载地址">下载地址</th>
+          <th class="c-date" title="打包日期">打包日期</th>
+          <th class="c-actions-5" title="操作">操作</th>
+        </tr>
+ </thead>
+
+{{#each entries}}
+
+<tr>
+
+<td class="c-name">{{deb_version}}</td>
+
+<td class="c-name">
+	<span class="label label-outline label-badge">视频结构化</span>            <a href="/pro/build-view-1274.html">{{name}}</a>
+</td>
+
+          <td class="c-url" title="http://172.16.1.51:6100/objext/P2P-objext-1804/packs/Module_VOES_5.1.44.2.0_10010_20200908_ubuntu18.04_amd64_nopipe_p_CMS_release.tar.gz"><a href="{{filePath}}">{{filePath}}</a>
+</td>
+          <td class="c-date">{{date}}</td>
+
+
+   <td class="c-actions">
+
+	<span type="submit" class="label label-outline label-badge"  value="Click Me Too" > 发布</span>
+
+	<span type="submit" class="label label-outline label-badge"  value="Click Me Too" > <a href='javascript:doPost("delete", {"deb_version":"{{deb_version}}"})'>删除</a> </span>
+
+ </td>
+ </div>
+
+
+</tr>
+   	
+{{/each}}
+
+
+</div>
+
+</table>
+</div>
+</div>
+</div>
+
+
+
+   
+ 
+
+
+
+</body>
+</html>
+
+
+<h1></h1>
+ 
+
+
+
