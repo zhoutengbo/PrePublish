@@ -37,18 +37,26 @@ module.exports = function (app) {
   console.log(__dirname);
 
   app.post('/prepublish/upload', function (req, res) {
+      console.log(req.body);
   	  handlerEngine.updateData(req.body);
       res.send('Hello world');
   });
 
   app.post('/prepublish/delete', function (req, res) {
       console.log(req.body.deb_version);
-      handlerEngine.deleteData(req.body.deb_version);
+      handlerEngine.deleteData(req.body.deb_version,res);
 
        
-       res.redirect(301, '/prepublish/show');
-       //res.location();
-       //res.send(301);
+      //res.redirect(301, '/prepublish/show');
+
+  });
+
+
+  app.post('/prepublish/publish', function (req, res) {
+     
+      handlerEngine.publishVersion(req.body.deb_version,res);
+       
+      //res.redirect(301, '/prepublish/show');
   });
 
   app.get('/prepublish/show', function(req, res){
@@ -60,6 +68,12 @@ module.exports = function (app) {
         res.render('show',{entries:data});
       });
 
+  });
+
+
+  app.get('/pro/*', function(req, res){
+       //getShowPage(app);
+      res.redirect(301, '/prepublish/show');
   });
 
   app.get('/prepublish/zh-cn.default.css', function(req, res){
